@@ -15,12 +15,7 @@ SERVER_VERSION=${2:-1}        # default is 1
 echo_blue "[ Building Jar file ... ]"
 ../gradlew :docker:assemble
 
-echo_blue "[ Building Docker image: $DOCKER_IMAGE_NAME ... ]"
-docker build \
-    -t $DOCKER_IMAGE_NAME \
-    --build-arg SPRING_PROFILE="$SPRING_PROFILE" \
-    --build-arg SERVER_VERSION="$SERVER_VERSION" \
-    -f docker-script/app/Build-Jar-Dockerfile .
+sh build-image.sh
 
 echo_blue "[ Pushing Docker image: $DOCKER_IMAGE_NAME ... ]"
 docker push $DOCKER_IMAGE_NAME
