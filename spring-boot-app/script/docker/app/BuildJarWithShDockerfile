@@ -1,4 +1,5 @@
-FROM gcr.io/distroless/java17-debian12 
+# including shell 
+FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
@@ -11,11 +12,13 @@ ARG DB_PASSWORD
 
 ENV SPRING_PROFILE=$SPRING_PROFILE
 ENV SERVER_VERSION=$SERVER_VERSION
-ENV SERVER_PORT=$SERVER_PORT
 ENV DB_URL=$DB_URL
 ENV DB_USERNAME=$DB_USERNAME
 ENV DB_PASSWORD=$DB_PASSWORD
 
 COPY 'build/libs/*-SNAPSHOT.jar' '/app.jar'
 
-ENTRYPOINT [ "java", "-Dspring.profiles.active=${SPRING_PROFILE}", "-Duser.server.version=${SERVER_VERSION}",  "-Dserver.port=${SERVER_PORT}", "-jar", "/app.jar" ]
+COPY 'script/docker/app/entrypoint.sh' '/entrypoint.sh'
+RUN sudo chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/bin/sh", "-c", "sh /entrypoint.sh" ]

@@ -21,9 +21,9 @@ spec:
       containers:
       - name: container
         image: progress0407/app-ver1
-        envFrom:
-        - configMapRef:
-            name: cm-was
+        # envFrom:
+        # - configMapRef:
+            # name: cm-was
         resources:
           requests:
             memory: 20Mi
@@ -31,7 +31,7 @@ spec:
             memory: 300Mi
         readinessProbe:
           httpGet:
-            path: /hi
+            path: /actuator/health
             port: 8080
             scheme: HTTP
           initialDelaySeconds: 2

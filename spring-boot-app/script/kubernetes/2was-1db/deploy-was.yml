@@ -20,21 +20,21 @@ spec:
       containers:
       - name: container
         image: progress0407/app-ver2
-        envFrom:
-        - configMapRef:
-            name: cm-was
+        # envFrom:
+        # - configMapRef:
+            # name: cm-was
         resources:
           requests:
             memory: 20Mi
           limits:
             memory: 300Mi
-        # readinessProbe:
-          # httpGet:
-            # path: /hi
-            # port: 8080
-            # scheme: HTTP
-          # initialDelaySeconds: 2
-          # periodSeconds: 2
-          # successThreshold: 2
-          # timeoutSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 2
+          periodSeconds: 2
+          successThreshold: 2
+          timeoutSeconds: 60
       terminationGracePeriodSeconds: 0
