@@ -1,11 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: canary-v2
-  # namespace: ns-deploy
-  annotations:
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "30"
+  name: app
 spec:
   ingressClassName: nginx
   rules:
@@ -16,6 +12,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: svc-v2
+            name: svc-v1
             port:
               number: 8080

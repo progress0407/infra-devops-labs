@@ -4,7 +4,7 @@ metadata:
   name: pod-v1
   labels:
     app: v1
-  namespace: ns-deploy
+  # namespace: ns-deploy
 spec:
   containers:
   - name: container
@@ -14,7 +14,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: svc-v1
-  namespace: ns-deploy
+  # namespace: ns-deploy
 spec:
   selector:
     app: v1
