@@ -5,7 +5,7 @@ metadata:
   # namespace: ns-deploy
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "30"
+    nginx.ingress.kubernetes.io/canary-weight: "5"
 spec:
   ingressClassName: nginx
   rules:
