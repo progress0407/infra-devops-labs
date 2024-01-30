@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-v1
+  labels:
+    app: v1
+  namespace: ns-deploy
+spec:
+  containers:
+  - name: container
+    image: progress0407/app-ver1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-v1
+  namespace: ns-deploy
+spec:
+  selector:
+    app: v1
+  ports:
+  - port: 8080
