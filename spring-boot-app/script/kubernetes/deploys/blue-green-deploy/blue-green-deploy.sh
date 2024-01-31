@@ -15,6 +15,7 @@ while true; do
 
     status=$(curl -s "$(minikube ip):30000/actuator/health")
     # status=$($k get pods | grep deploy-was-green | awk '{print $3}')
+    # pod_names=$(kubectl get pods | awk '{if(NR>1) print $1}')
 
     if [[ $status == *"UP"* ]]; then
     # if [[ $status == "Running" ]]; then
